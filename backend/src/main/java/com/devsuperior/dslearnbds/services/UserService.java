@@ -18,11 +18,15 @@ import com.devsuperior.dslearnbds.services.exceptions.ResourceNotFoundException;
 public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository repository;
+
+	@Autowired
+	private AuthService authService;
 	
 	private static Logger logger = LoggerFactory.getLogger(UserService.class);
 	
 	@Transactional(readOnly=true)
 	public UserDTO findById(Long id) {
+		authService.validateSelfOrAdmin(id);
 		return repository.findById(id).map(UserDTO::new).orElseThrow(() -> new ResourceNotFoundException("Entity Not Found"));
 	}
 
