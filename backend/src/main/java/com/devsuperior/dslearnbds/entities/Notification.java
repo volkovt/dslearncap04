@@ -23,7 +23,7 @@ public class Notification implements Serializable {
 	private Long id;
 	private String text;
 	@Column(columnDefinition="TIMESTAMP WITHOUT TIME ZONE")
-	private Instant Moment;
+	private Instant moment;
 	private boolean read;
 	private String route;
 	
@@ -39,7 +39,7 @@ public class Notification implements Serializable {
 		super();
 		this.id = id;
 		this.text = text;
-		Moment = moment;
+		this.moment = moment;
 		this.read = read;
 		this.route = route;
 		this.user = user;
@@ -62,11 +62,11 @@ public class Notification implements Serializable {
 	}
 
 	public Instant getMoment() {
-		return Moment;
+		return moment;
 	}
 
 	public void setMoment(Instant moment) {
-		Moment = moment;
+		this.moment = moment;
 	}
 
 	public boolean isRead() {
